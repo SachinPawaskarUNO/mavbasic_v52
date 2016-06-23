@@ -37,9 +37,9 @@ class RolesController extends Controller
     public function show(Role $roles)
     {
         $object = $roles;
-        Log::info('RolesController.show: '.$object->id);
+        Log::info('RolesController.show: '.$object->id.'|'.$object->name);
         $this->viewData['role'] = $object;
-        $this->viewData['heading'] = "View Role: ".$object->name;
+        $this->viewData['heading'] = "View Role: ".$object->display_name;
 
         return view('roles.show', $this->viewData);
     }
@@ -61,16 +61,17 @@ class RolesController extends Controller
         $object = Role::create($input);
         $this->syncPermissions($object, $request->input('permissionlist'));
         Session::flash('flash_message', 'Role successfully added!');
-        Log::info('RolesController.store - End: '.$object->id);
+        Log::info('RolesController.store - End: '.$object->id.'|'.$object->name);
+
         return redirect()->back();
     }
 
     public function edit(Role $roles)
     {
         $object = $roles;
-        Log::info('RolesController.edit: '.$object->id);
+        Log::info('RolesController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['role'] = $object;
-        $this->viewData['heading'] = "Edit Role: ".$object->name;
+        $this->viewData['heading'] = "Edit Role: ".$object->display_name;
 
         return view('roles.edit', $this->viewData);
     }
@@ -78,13 +79,13 @@ class RolesController extends Controller
     public function update(Role $roles, RoleRequest $request)
     {
         $object = $roles;
-        Log::info('RolesController.update - Start: '.$object->id);
+        Log::info('RolesController.update - Start: '.$object->id.'|'.$object->name);
         $this->populateUpdateFields($request);
 
         $object->update($request->all());
         $this->syncPermissions($object, $request->input('permissionlist'));
         Session::flash('flash_message', 'Role successfully updated!');
-        Log::info('RolesController.update - End: '.$object->id);
+        Log::info('RolesController.update - End: '.$object->id.'|'.$object->name);
         return redirect('roles');
     }
 
@@ -98,7 +99,7 @@ class RolesController extends Controller
     public function destroy(Request $request, Role $roles)
     {
         $object = $roles;
-        Log::info('RolesController.destroy: Start: '.$object->id);
+        Log::info('RolesController.destroy: Start: '.$object->id.'|'.$object->name);
         if ($this->authorize('destroy', $object))
         {
             Log::info('Authorization successful');

@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome to Sachin's Basic Starter Application</div>
-                <div style="text-align: center;"><img src="images/useable-big.png"></div>
+                <div class="panel-heading">Welcome to Basic Starter Application</div>
+                <div style="text-align: center;"><img src="images/UNOStudentsCloud.jpg"></div>
                 <div class="panel-body">
                     Place some welcome text here for the your Basic Starter Application and maybe a description about intended use.
                 </div>

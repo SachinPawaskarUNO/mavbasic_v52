@@ -1,15 +1,5 @@
 <?php
 
-// Production Database setup - Start
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));   // For ClearDB (Heroku's MySQL DB)
-$url = parse_url(getenv("DATABASE_URL"));           // For Heroku Postgress DB
-
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
-// Production Database setup - End
-
 return [
 
     /*
@@ -77,42 +67,14 @@ return [
             'engine'    => null,
         ],
 
-        // Production setup for MySQL
-//        'mysql' => [
-//            'driver'    => 'mysql',
-//            'host'      => $host,       // Production
-//            'database'  => $database,   // Production
-//            'username'  => $username,   // Production
-//            'password'  => $password,   // Production
-//            'port'      => env('DB_PORT', '3306'),
-//            'charset'   => 'utf8',
-//            'collation' => 'utf8_unicode_ci',
-//            'prefix'    => '',
-//            'strict'    => false,
-//            'engine'    => null,
-//        ],
-
         // Local Development setup
-//        'pgsql' => [
-//            'driver' => 'pgsql',
-//            'host' => env('DB_HOST', 'localhost'),
-//            'port' => env('DB_PORT', '5432'),
-//            'database' => env('DB_DATABASE', 'forge'),
-//            'username' => env('DB_USERNAME', 'forge'),
-//            'password' => env('DB_PASSWORD', ''),
-//            'charset' => 'utf8',
-//            'prefix' => '',
-//            'schema' => 'public',
-//        ],
-
-        // Production setup for Postgres
         'pgsql' => [
             'driver' => 'pgsql',
-            'host'      => $host,       // Production
-            'database'  => $database,   // Production
-            'username'  => $username,   // Production
-            'password'  => $password,   // Production
+            'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',

@@ -29,7 +29,6 @@ class CommentPolicy
      */
     public function destroy(User $user, Comment $comment)
     {
-        return true;
-//        return ($user->isAdministrator() || $user->isAdvisor());
+        return $user->hasRole('admin');
     }
 }

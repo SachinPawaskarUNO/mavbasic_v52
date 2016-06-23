@@ -28,13 +28,7 @@ class UserPolicy
      */
     public function destroy(User $user, User $userrecord)
     {
-//        if ($userrecord->name == 'Administrator' || $userrecord->name == 'Advisor')
-//        {
-//            return false;
-//        }
-
-//        dd(['In Policy']);
-        return $user->isAdministrator();
+        return $user->hasRole('admin');
     }
 
 }

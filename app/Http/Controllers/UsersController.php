@@ -44,7 +44,7 @@ class UsersController extends Controller
     public function show(User $users)
     {
         $object = $users;
-        Log::info('UsersController.show: '.$object->id);
+        Log::info('UsersController.show: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
         $this->viewData['heading'] = "View User: ".$object->name;
 
@@ -70,14 +70,14 @@ class UsersController extends Controller
         $object = User::create($input);
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully added!');
-        Log::info('UsersController.store - End: '.$object->id);
+        Log::info('UsersController.store - End: '.$object->id.'|'.$object->name);
         return redirect()->back();
     }
 
     public function edit(User $users)
     {
         $object = $users;
-        Log::info('UsersController.edit: '.$object->id);
+        Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
         $this->viewData['heading'] = "Edit User: ".$object->name;
 
@@ -87,7 +87,7 @@ class UsersController extends Controller
     public function update(User $users, UserRequest $request)
     {
         $object = $users;
-        Log::info('UsersController.update - Start: '.$object->id);
+        Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
@@ -95,7 +95,7 @@ class UsersController extends Controller
         $object->update($request->all());
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully updated!');
-        Log::info('UsersController.update - End: '.$object->id);
+        Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
 
@@ -109,7 +109,7 @@ class UsersController extends Controller
     public function destroy(Request $request, User $users)
     {
         $object = $users;
-        Log::info('UsersController.destroy: Start: '.$object->id);
+        Log::info('UsersController.destroy: Start: '.$object->id.'|'.$object->name);
         if ($this->authorize('destroy', $object))
         {
             Log::info('Authorization successful');

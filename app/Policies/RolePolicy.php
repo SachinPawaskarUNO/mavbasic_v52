@@ -29,6 +29,6 @@ class RolePolicy
      */
     public function destroy(User $user, Role $role)
     {
-        return $user->isAdministrator();
+        return $user->hasRole('admin');
     }
 }
