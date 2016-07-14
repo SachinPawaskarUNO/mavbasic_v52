@@ -12,9 +12,11 @@
 
             <!-- Branding Image -->
             {{--<a class="navbar-brand" href="{{ url('/') }}">Laravel</a>--}}
+            <div class="pull-left"><img src="images/UNO-icon-color.png" style="height: 48px;"></div>
             <a class="navbar-brand" href="{{ url('/') }}">
                 Basic Starter App
             </a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
