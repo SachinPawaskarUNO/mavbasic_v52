@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            // Todo: Add Active Status flag
             $table->boolean('active')->default(true);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');

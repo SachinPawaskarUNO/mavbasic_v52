@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
+use App\User;
 use App\Role;
 use App\Permission;
-use App\User;
 
 class UsersTableSeeder extends Seeder {
 
@@ -96,11 +95,11 @@ class UsersRolesPermissions extends Seeder
     public function run()
     {
         $manageUsers = Permission::where('name', '=', 'manage-users')->first();
-//        $manageRoles = Permission::where('name', '=', 'manage-roles')->first();
+        $manageRoles = Permission::where('name', '=', 'manage-roles')->first();
         $readonlyAll = Permission::where('name', '=', 'readonly-all')->first();
 
         $adminRole = Role::where('name', '=', 'admin')->first();
-        $adminRole->attachPermissions(array($manageUsers));
+        $adminRole->attachPermissions(array($manageUsers, $manageRoles));
 
         $studentRole = Role::where('name', '=', 'student')->first();
         $studentRole->attachPermissions(array($readonlyAll));
